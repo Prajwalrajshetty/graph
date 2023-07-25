@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Chart</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <label for="inputValue" class="label">Input Value:</label>
+        <input type="number" id="inputValue" class="input-container"/>
+      </div>
+      <div>
+        <label for="maxValue" class="label">Max Value:</label>
+        <input type="number" id="maxValue" class="input-container"/>
+      </div>
+      <button onclick="plotGraph()" class="button">Plot</button>
+      <div id="graph"></div>
+      <div id="graph1"></div>
+      <div id="graph2"></div>
+      <script>
+        function plotGraph() {
+          var inputValue = parseFloat(document.getElementById('inputValue').value);
+          var maxValue = parseFloat(document.getElementById('maxValue').value);
+      
+          // Check if the input values are valid numbers
+          if (isNaN(inputValue) || isNaN(maxValue)) {
+            alert('Please enter valid numeric values!');
+            return;
+          }
+      
+          // Check if Input Value is greater than Max Value
+          if (inputValue > maxValue) {
+            alert('Input Value cannot be greater than Max Value!');
+            return;
+          }
+      
+          // Calculate the percentages for the graph
+          var inputPercentage = (inputValue / maxValue) * 100;
+          var maxPercentage = 100;
+      
+          // Plot the graph
+          var graphContainer = document.getElementById('graph');
+          graphContainer.innerHTML = `
+            <div style="width: ${maxPercentage}%; background-color: lightgray;">
+              <div style="width: ${inputPercentage}%; background-color: blue; height: 30px;"></div>
+            </div>
+            <p>${inputPercentage.toFixed(2)}%</p>
+          `;
+          var graphContainer = document.getElementById('graph1');
+          graphContainer.innerHTML = `
+            <div style="width: ${maxPercentage}%; background-color: lightgray;">
+              <div style="width: ${inputPercentage}%; background-color: blue; height: 30px;"></div>
+            </div>
+            <p>${inputPercentage.toFixed(2)}%</p>
+          `;
+          var graphContainer = document.getElementById('graph2');
+          graphContainer.innerHTML = `
+            <div style="width: ${maxPercentage}%; background-color: lightgray;">
+              <div style="width: ${inputPercentage}%; background-color: blue; height: 30px;"></div>
+            </div>
+            <p>${inputPercentage.toFixed(2)}%</p>
+          `;
+        }
+      </script>
+      
+</body>
+</html>
